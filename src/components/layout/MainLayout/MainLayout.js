@@ -1,6 +1,8 @@
 import React from 'react';
 import PropTypes from 'prop-types';
 import { Header } from '../Header/Header';
+import Footer from '../Footer/Footer';
+import Hero from '../Hero/Hero';
 import clsx from 'clsx';
 
 // import { connect } from 'react-redux';
@@ -11,7 +13,9 @@ import styles from './MainLayout.module.scss';
 const Component = ({className, children}) => (
   <div className={clsx(className, styles.root)}>
     <Header />
+    <Hero />
     {children}
+    <Footer />    
   </div>
 );
 
