@@ -1,0 +1,51 @@
+@import '../../../styles/settings.scss';
+
+.root {
+  background-color: #535c68;
+  
+    
+  ul {
+    list-style: none;
+    margin: 0;
+    padding: 0;
+  
+    li {
+      display: inline-block;
+      line-height: 55px;
+  
+      a {
+        color: white;
+        font-size: 13px;
+        text-decoration: none;
+  
+        &:hover {
+          color: yellow;
+          text-decoration: none;
+        }
+      }
+    }
+  }
+}
+
+.topMenu {
+  display: flex;
+  justify-content: flex-end;
+  align-items: center;
+}
+
+.topCoupon {
+  display: flex;
+  padding-top: 10px;
+  align-items: center;
+  color: white;
+  font-size: 18px;
+  font-weight: 400;
+}
+
+.topMenu ul li {
+  margin-left: 20px;
+
+  .icon {
+    margin-right: 5px;
+  }
+}

@@ -1,6 +1,7 @@
 import React from 'react';
 import PropTypes from 'prop-types';
-
+import TopBar from '../TopBar/TopBar';
+import MenuBar from '../MenuBar/MenuBar';
 import clsx from 'clsx';
 
 // import { connect } from 'react-redux';
@@ -8,15 +9,14 @@ import clsx from 'clsx';
 
 import styles from './Header.module.scss';
 
-const Component = ({className, children}) => (
-  <div className={clsx(className, styles.root)}>
-    <h2>Header</h2>
-    {children}
-  </div>
+const Component = ({className}) => (
+  <header className={clsx(className, styles.root)}>
+    <TopBar />
+    <MenuBar />
+  </header>
 );
 
 Component.propTypes = {
-  children: PropTypes.node,
   className: PropTypes.string,
 };
 

@@ -1,1 +1,12 @@
 @import "settings.scss";
+@import url("https://api.fontshare.com/css?f[]=pally@400,500,700,1&display=swap");
+@font-face {
+    font-family: "Bethsy";
+    src: local("Bethsy"),
+     url("/src/fonts/bethsy/Bethsy.ttf") format("truetype");
+}
+
+body {
+    font-family: 'Pally', sans-serif;
+}
+

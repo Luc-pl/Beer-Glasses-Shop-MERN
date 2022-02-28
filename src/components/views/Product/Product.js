@@ -31,5 +31,5 @@ ProductComponent.propTypes = {
 // const Container = connect(mapStateToProps, mapDispatchToProps)(Component);
 
 export {
-  ProductComponent,
+  ProductComponent as Product,
 };
