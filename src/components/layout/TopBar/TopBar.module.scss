@@ -1,7 +1,7 @@
 @import '../../../styles/settings.scss';
 
 .root {
-  background-color: #535c68;
+  background-color: $color-pink;
   
     
   ul {
@@ -19,7 +19,7 @@
         text-decoration: none;
   
         &:hover {
-          color: yellow;
+          color: $color-yellow;
           text-decoration: none;
         }
       }

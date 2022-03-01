@@ -1,7 +1,7 @@
 @import '../../../styles/settings.scss';
 
 .footerMenu {
-    background-color: #535c68;
+    background-color: $color-blue;
     padding: 40px 0;
 
     .menuWrapper {
@@ -25,7 +25,7 @@
             text-decoration: none;
 
             &:hover {
-              color: yellow;
+              color: $color-yellow;
             }
           }
         }
@@ -34,7 +34,7 @@
 }
 
 .bottomBar {
-    background-color: #c0392b;
+    background-color: $color-pink;
     padding: 20px 0;
 
     .copyright {
@@ -62,7 +62,7 @@
             text-decoration: none;
 
             &:hover {
-              color: yellow;
+              color: $color-yellow;
             }
           }
         }
