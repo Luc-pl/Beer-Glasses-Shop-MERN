@@ -1,4 +1,20 @@
 @import '../../../styles/settings.scss';
 
-// .root {
-// }
+.box {
+    padding: 50px 0;
+    font-family: $font-family;
+}
+
+.boxCard {
+    background-color: $color-box;
+}
+
+.boxTitle {
+    font-size: 40px;
+}
+
+img {
+    width: 100px;
+    float: right;
+    padding-bottom: 20px;
+}
