@@ -3,7 +3,7 @@ import Container from 'react-bootstrap/Container';
 import Row from 'react-bootstrap/Row';
 import Col from 'react-bootstrap/Col';
 import { FontAwesomeIcon } from '@fortawesome/react-fontawesome';
-import { faLock, faUser } from '@fortawesome/free-solid-svg-icons';
+import { faCartShopping, faLock, faUser } from '@fortawesome/free-solid-svg-icons';
 import styles from './TopBar.module.scss';
 
 const TopBar = () => (
@@ -25,6 +25,12 @@ const TopBar = () => (
               <a href='/register'>
                 <FontAwesomeIcon className={styles.icon} icon={faLock} />
                 <span>Register</span>
+              </a>
+            </li>
+            <li>
+              <a href='/cart'>
+                <FontAwesomeIcon className={styles.icon} icon={faCartShopping} />
+                <span>Cart</span>
               </a>
             </li>
           </ul>
