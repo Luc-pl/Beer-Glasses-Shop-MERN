@@ -10,7 +10,7 @@ router.post('/orders', async (req, res) => {
     const { value, status, products, contact } = req.body;
 
     if (!value || !status || !products || !contact) {
-      throw new Error('Invalid data');
+      throw new Error('Wrong data');
     } else {
       const newOrder = new Order(req.body);
       await newOrder.save();
