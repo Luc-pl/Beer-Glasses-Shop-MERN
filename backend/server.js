@@ -17,7 +17,7 @@ app.use('/api', productsRoutes);
 
 /* API ERROR PAGES */
 app.use('/api', (req, res) => {
-  res.status(404).send({ post: 'Not found...' });
+  res.status(404).send({ products: 'Not found...' });
 });
 
 /* REACT WEBSITE */
@@ -37,5 +37,5 @@ db.on('error', err => console.log('Error: ' + err));
 /* START SERVER */
 const port = process.env.PORT || 8000;
 app.listen(port, () => {
-  console.log('Server is running on port: '+port);
+  console.log('Server is running on port: '+ port);
 });

@@ -14,9 +14,9 @@ const App = () => (
     <BrowserRouter>
       <MainLayout>
         <Switch>
-          <Route exact path='/' component={Homepage} />
-          <Route exact path='/products/:id' component={Product} />
-          <Route path='*' component={NotFound} />
+          <Route exact path={`${process.env.PUBLIC_URL}/`} component={Homepage} />
+          <Route exact path={`${process.env.PUBLIC_URL}/product/:_id`} component={Product} />
+          <Route exact path={`${process.env.PUBLIC_URL}*`} component={NotFound} />
         </Switch>
       </MainLayout>
     </BrowserRouter>

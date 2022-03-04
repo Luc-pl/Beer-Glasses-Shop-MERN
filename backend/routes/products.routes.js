@@ -1,15 +1,14 @@
 const express = require('express');
 const router = express.Router();
 
-const Post = require('../models/product.model');
+const Product = require('../models/product.model');
 
 router.get('/products', async (req, res) => {
   try {
-    const result = await Post
-      .find({status: 'published'})
-      .select('title text price')
-      .sort({created: -1});
-    if(!result) res.status(404).json({ post: 'Not found' });
+    const result = await Product
+      .find()
+      .select('name image description price category gallery');
+    if(!result) res.status(404).json({ products: 'Not found' });
     else res.json(result);
   }
   catch(err) {
@@ -19,9 +18,9 @@ router.get('/products', async (req, res) => {
 
 router.get('/products/:id', async (req, res) => {
   try {
-    const result = await Post
+    const result = await Product
       .findById(req.params.id);
-    if(!result) res.status(404).json({ post: 'Not found' });
+    if(!result) res.status(404).json({ products: 'Not found' });
     else res.json(result);
   }
   catch(err) {

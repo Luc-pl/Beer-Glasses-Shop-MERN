@@ -2,16 +2,13 @@ import React from 'react';
 import PropTypes from 'prop-types';
 import { Header } from '../Header/Header';
 import Footer from '../Footer/Footer';
-import Hero from '../Hero/Hero';
-import Box from '../Box/Box';
+
 import clsx from 'clsx';
 import styles from './MainLayout.module.scss';
 
 const Component = ({className, children}) => (
   <div className={clsx(className, styles.root)}>
     <Header />
-    <Hero />
-    <Box />
     {children}
     <Footer />    
   </div>

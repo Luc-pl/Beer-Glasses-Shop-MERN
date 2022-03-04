@@ -1,0 +1,10 @@
+@import '../../../styles/settings.scss';
+
+.productBox {
+    font-family: $font-family;
+    color:black;
+
+    :hover {
+        color: $color-pink;
+    }
+}
