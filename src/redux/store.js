@@ -1,13 +1,14 @@
 import {combineReducers, createStore, applyMiddleware} from 'redux';
 import thunk from 'redux-thunk';
 import { composeWithDevTools } from 'redux-devtools-extension';
-
+import loginReducer from './loginRedux';
 import { initialState } from './initialState';
 import { reducer as productsReducer } from './productsRedux';
 
 // define reducers
 const reducers = {
   products: productsReducer,
+  isLogged: loginReducer,
 };
 
 // add blank reducers for initial state properties without reducers
