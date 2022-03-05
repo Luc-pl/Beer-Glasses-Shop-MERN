@@ -2,6 +2,7 @@ import {combineReducers, createStore, applyMiddleware} from 'redux';
 import thunk from 'redux-thunk';
 import { composeWithDevTools } from 'redux-devtools-extension';
 import loginReducer from './loginRedux';
+import cartReducer from './cartRedux';
 import { initialState } from './initialState';
 import { reducer as productsReducer } from './productsRedux';
 
@@ -9,6 +10,7 @@ import { reducer as productsReducer } from './productsRedux';
 const reducers = {
   products: productsReducer,
   isLogged: loginReducer,
+  cart: cartReducer,
 };
 
 // add blank reducers for initial state properties without reducers
