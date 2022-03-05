@@ -2,6 +2,7 @@
 
 .root {
   background-color: $color-pink;
+  font-family: $font-family;
   
     
   ul {
@@ -15,7 +16,7 @@
   
       a {
         color: white;
-        font-size: 13px;
+        font-size: 25px;
         text-decoration: none;
   
         &:hover {

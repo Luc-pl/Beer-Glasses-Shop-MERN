@@ -1,7 +1,5 @@
 import React from 'react';
 import Navbar from 'react-bootstrap/Navbar';
-import Nav from 'react-bootstrap/Nav';
-import NavDropdown from 'react-bootstrap/NavDropdown';
 import Container from 'react-bootstrap/Container';
 import Button from 'react-bootstrap/Button';
 import Form from 'react-bootstrap/Form';
@@ -22,15 +20,6 @@ const MenuBar = () => (
         />
         <p>Beer Glasses</p>
       </Navbar.Brand>
-      <Nav className="me-auto">
-        <Nav.Link href="#features">Home</Nav.Link>
-        <Nav.Link href="#pricing">O nas</Nav.Link>
-        <NavDropdown title="Produkty" id="collasible-nav-dropdown">
-          <NavDropdown.Item href="#action/3.1">Szklanki</NavDropdown.Item>
-          <NavDropdown.Item href="#action/3.2">Przedmioty</NavDropdown.Item>
-          <NavDropdown.Item href="#action/3.3">Narzędzia</NavDropdown.Item>
-        </NavDropdown>
-      </Nav>
       <Form className="d-flex">
         <FormControl
           type="search"

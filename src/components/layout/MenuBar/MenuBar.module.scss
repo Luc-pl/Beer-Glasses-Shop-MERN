@@ -10,11 +10,17 @@
 }
 .navLogo {
     display: flex;
-    align-items: center;
-       
+    align-items: center;       
 
     p {
         margin: 0 500px 0 5px;
-        font-family: Bethsy, serif;
+        font-family: $font-family;
+        font-weight: 900;
+        font-size: 30px;
+        color: white;
+    }
+
+    img {
+        height: 100px;
     }
 }
