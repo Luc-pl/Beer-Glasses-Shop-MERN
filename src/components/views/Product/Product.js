@@ -2,13 +2,14 @@ import React from 'react';
 import PropTypes from 'prop-types';
 import styles from './Product.module.scss';
 import { getCurrentProduct, fetchProductDetails } from '../../../redux/productsRedux';
+import { Quantity } from '../../features/Quantity/Quantity';
 import { connect } from 'react-redux';
 import Container from 'react-bootstrap/Container';
 import Row from 'react-bootstrap/Row';
 import Col from 'react-bootstrap/Col';
 import Card from 'react-bootstrap/Card';
-import InputGroup from 'react-bootstrap/InputGroup';
-import FormControl from 'react-bootstrap/FormControl';
+//import InputGroup from 'react-bootstrap/InputGroup';
+//import FormControl from 'react-bootstrap/FormControl';
 import { Button } from 'react-bootstrap';
 
 class Component extends React.Component {
@@ -50,19 +51,7 @@ class Component extends React.Component {
                   {description}
                 </Card.Text>
                 <div className={styles.cardLine}></div>   
-                <Row md={4}>
-                  <Col>
-                    <InputGroup className="mb-3">
-                      <Button variant="outline-dark">-</Button>
-                      <FormControl
-                        placeholder="1"
-                        aria-label="1"
-                        aria-describedby="basic-addon1"
-                      />
-                      <Button variant="outline-dark">+</Button>
-                    </InputGroup>
-                  </Col>
-                </Row>
+                <Quantity />
                 <Button variant="outline-dark">+ ADD TO CART</Button>                  
               </Card.Body>
             </Col>

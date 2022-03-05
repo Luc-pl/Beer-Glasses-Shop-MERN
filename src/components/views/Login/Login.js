@@ -1,22 +1,22 @@
 import React from 'react';
 import PropTypes from 'prop-types';
-import { TopBar } from '../TopBar/TopBar';
-import MenuBar from '../MenuBar/MenuBar';
+
 import clsx from 'clsx';
 
 // import { connect } from 'react-redux';
 // import { reduxSelector, reduxActionCreator } from '../../../redux/exampleRedux.js';
 
-import styles from './Header.module.scss';
+import styles from './Login.module.scss';
 
-const Component = ({className}) => (
-  <header className={clsx(className, styles.root)}>
-    <TopBar />
-    <MenuBar />
-  </header>
+const Component = ({className, children}) => (
+  <div className={clsx(className, styles.root)}>
+    <h2>Login</h2>
+    {children}
+  </div>
 );
 
 Component.propTypes = {
+  children: PropTypes.node,
   className: PropTypes.string,
 };
 
@@ -31,7 +31,7 @@ Component.propTypes = {
 // const Container = connect(mapStateToProps, mapDispatchToProps)(Component);
 
 export {
-  Component as Header,
-  // Container as Header,
-  Component as HeaderComponent,
+  Component as Login,
+  // Container as Login,
+  Component as LoginComponent,
 };
