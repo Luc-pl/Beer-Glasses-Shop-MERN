@@ -1,8 +1,10 @@
 import React from 'react';
 import PropTypes from 'prop-types';
+import { Link } from 'react-router-dom';
 import styles from './Product.module.scss';
 import { getCurrentProduct, fetchProductDetails } from '../../../redux/productsRedux';
-import { Quantity } from '../../features/Quantity/Quantity';
+import { addToCart } from '../../../redux/cartRedux';
+//import { Quantity } from '../../features/Quantity/Quantity';
 import { connect } from 'react-redux';
 import Container from 'react-bootstrap/Container';
 import Row from 'react-bootstrap/Row';
@@ -10,18 +12,33 @@ import Col from 'react-bootstrap/Col';
 import Card from 'react-bootstrap/Card';
 //import InputGroup from 'react-bootstrap/InputGroup';
 //import FormControl from 'react-bootstrap/FormControl';
-import { Button } from 'react-bootstrap';
+//import { Button } from 'react-bootstrap';
 
 class Component extends React.Component {
 
+  state = {
+    quantity: 1,
+  };
+
   componentDidMount() {
-    const { fetchProduct } = this.props;
-    fetchProduct();
+    const { fetchProduct, match } = this.props;
+    fetchProduct(match.params._id);
+  }
+
+  handleQuantityChange(event) {
+    this.setState({ quantity: event.target.value });
+  }
+
+  handleSubmit(event, id) {
+    alert(`Quantity: ${this.state.quantity} product: ${id}`);
+    this.setState({ quantity: 1 });
+    event.preventDefault();
   }
 
   render() {
-    const { product } = this.props;
-    const { name, description, price, category, image, gallery } = product;
+    const { product, cart } = this.props;
+    const { _id, name, description, price, category, image, gallery } = product;
+    const isProductInCart = cart.some(({ productId }) => productId === _id);
 
     return (
       <Container className={styles.cardProduct}>
@@ -50,9 +67,29 @@ class Component extends React.Component {
                 <Card.Text className={styles.description}>
                   {description}
                 </Card.Text>
-                <div className={styles.cardLine}></div>   
-                <Quantity />
-                <Button variant="outline-dark">+ ADD TO CART</Button>                  
+                <div className={styles.cardLine}></div>
+                {isProductInCart
+                  ?
+                  <div>
+                    <div>Produkt w koszyku</div>
+                    <button><Link to={`${process.env.PUBLIC_URL}/cart`} > Przejdź do koszyka</Link></button>
+                  </div> 
+                  :
+                  <Row>
+                    <Col>
+                      <form className={styles.addCartForm} onSubmit={(e) => this.handleSubmit(e, _id)}>
+                        <input 
+                          name="quantity" 
+                          id="quantity" 
+                          required type="number" 
+                          value={this.state.quantity} 
+                          onChange={this.handleQuantityChange.bind(this)} 
+                        />
+                        <input type="submit" value="+ ADD TO CART" />
+                      </form>
+                    </Col>
+                  </Row>
+                }
               </Card.Body>
             </Col>
           </Row>    
@@ -65,17 +102,22 @@ class Component extends React.Component {
 
 Component.propTypes = {
   children: PropTypes.node,
+  match: PropTypes.object,
   className: PropTypes.string,
   product: PropTypes.object,
   fetchProduct: PropTypes.func,
+  addToCart: PropTypes.func,
+  cart: PropTypes.array,
 };
 
 const mapStateToProps = state => ({
   product: getCurrentProduct(state),
+  cart: state.cart,
 });
 
-const mapDispatchToProps = (dispatch, props) => ({
-  fetchProduct: () => dispatch(fetchProductDetails(props.match.params._id)),
+const mapDispatchToProps = (dispatch) => ({
+  fetchProduct: id => dispatch(fetchProductDetails(id)),
+  addToCart: obj => dispatch(addToCart(obj)),
 });
 
 const ReduxContainer = connect(mapStateToProps, mapDispatchToProps)(Component);

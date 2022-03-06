@@ -55,5 +55,19 @@ export const initialState = {
       //   price: 18,
       // },
     ],
+    cart: [],
+    order: [],
+    user: {
+    },
+    isLogged: true,
+    products: {
+      currentProduct: {},
+      data: [],
+      cart: [],
+      loading: {
+        active: false,
+        error: false,
+      },
+    },
   },
 };
