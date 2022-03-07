@@ -1,5 +1,6 @@
 import React from 'react';
 import PropTypes from 'prop-types';
+import { Price } from '../../common/Price/Price';
 import Card from 'react-bootstrap/Card';
 import clsx from 'clsx';
 import Container from 'react-bootstrap/Container';
@@ -43,9 +44,9 @@ class Component extends React.Component {
 
     return (
       <Container className={clsx(className, styles.root)}>
-        <h2>Your Cart</h2>
         <Card>
           <Card.Body>
+            <h2>Your Cart</h2>
             {cart.length > 0
               ?
               <div>
@@ -55,13 +56,13 @@ class Component extends React.Component {
                     <p>{price}</p>
                     <input name="quantity" id="quantity" required type="number" value={quantity} onChange={(e) => this.handleQuantityChange(productId, e)} />
                     <textarea name="additionalInfo" id="additionalInfo" onChange={(e) => this.handleInfoChange(productId, e)} placeholder="Wpisz komentarz lub zapytaj"></textarea>
-                    <button onClick={(e) => this.handleRemove(e, productId)}></button>
+                    <button onClick={(e) => this.handleRemove(e, productId)}>Clear cart</button>
                   </form>
                 )}
-                <p>{`Total price: ${cartValue}`}</p>
+                <Price price={cartValue} />
               </div>
               :
-              <h2>Cart is empty</h2>
+              <h2>...is empty</h2>
             }
           </Card.Body>
         </Card>
