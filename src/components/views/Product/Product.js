@@ -1,3 +1,4 @@
+/* eslint-disable linebreak-style */
 import React from 'react';
 import PropTypes from 'prop-types';
 import { Link } from 'react-router-dom';
@@ -30,14 +31,14 @@ class Component extends React.Component {
     }
   }
 
-  handleSubmit = (e, productId, title, price) => {
+  handleSubmit = (e, productId, name, price) => {
     const { addToCart } = this.props;
     const { quantity } = this.state;
 
     const cartItem = {
       quantity,
       productId,
-      title,
+      name,
       price,
       additionalInfo: '',
     };

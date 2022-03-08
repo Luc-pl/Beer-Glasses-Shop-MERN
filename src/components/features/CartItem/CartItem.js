@@ -2,6 +2,7 @@
 import React from 'react';
 import PropTypes from 'prop-types';
 import clsx from 'clsx';
+import { Price } from '../../common/Price/Price';
 import styles from './CartItem.module.scss';
 import { connect } from 'react-redux';
 import { removeFromCart, updateCartItemQuantity, updateCartItemInfo } from '../../../redux/cartRedux';
@@ -24,7 +25,7 @@ class Component extends React.Component {
 
   render() {
     const { className, cartItem } = this.props;
-    const { quantity, productId, name } = cartItem;
+    const { quantity, productId, name, price } = cartItem;
 
     return (
       <form key={productId} className={clsx(className, styles.root)}>
@@ -44,6 +45,7 @@ class Component extends React.Component {
           placeholder="">
         </textarea>
         <button onClick={(e) => this.handleRemove(productId, e)}>Remove to cart</button>
+        <Price price={price * quantity} text={''} />
       </form>
     );
   }
