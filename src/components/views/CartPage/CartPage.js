@@ -7,17 +7,10 @@ import Card from 'react-bootstrap/Card';
 import clsx from 'clsx';
 import Container from 'react-bootstrap/Container';
 import { connect } from 'react-redux';
-import { addProducts } from '../../../redux/orderRedux';
 
 import styles from './CartPage.module.scss';
 
 class Component extends React.Component {
-
-  handleSummary() {
-    const { addProducts, cart } = this.props;
-
-    addProducts(cart);
-  }
 
   render() {
     const { className, cart } = this.props;
@@ -56,7 +49,6 @@ Component.propTypes = {
   children: PropTypes.node,
   className: PropTypes.string,
   cart: PropTypes.array,
-  addProducts: PropTypes.func,
 };
 
 const mapStateToProps = state => ({
@@ -64,7 +56,6 @@ const mapStateToProps = state => ({
 });
 
 const mapDispatchToProps = dispatch => ({
-  addProducts: cart => dispatch(addProducts(cart)),
 });
 
 const ReduxContainer = connect(mapStateToProps, mapDispatchToProps)(Component);

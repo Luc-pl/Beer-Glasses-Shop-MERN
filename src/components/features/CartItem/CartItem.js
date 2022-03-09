@@ -2,7 +2,7 @@
 import React from 'react';
 import PropTypes from 'prop-types';
 import clsx from 'clsx';
-import { Price } from '../../common/Price/Price';
+import { Quantity } from '../../features/Quantity/Quantity';
 import styles from './CartItem.module.scss';
 import { connect } from 'react-redux';
 import { removeFromCart, updateCartItemQuantity, updateCartItemInfo } from '../../../redux/cartRedux';
@@ -25,27 +25,19 @@ class Component extends React.Component {
 
   render() {
     const { className, cartItem } = this.props;
-    const { quantity, productId, name, price } = cartItem;
+    const { quantity, productId, name } = cartItem;
 
     return (
       <form key={productId} className={clsx(className, styles.root)}>
         <p>{name}</p>
-        <input 
-          name="quantity" 
-          id="quantity" 
-          required  
-          type="number" 
-          value={quantity} 
-          onChange={(e) => this.handleQuantityChange(productId, e)} 
-        />
+        <Quantity value={quantity} action={(e) => this.handleQuantityChange(productId, e)} className={styles.inputQuantityPosition} />
+        <button onClick={(e) => this.handleRemove(e, productId)}>Remove to cart</button>
         <textarea 
           name="additionalInfo" 
           id="additionalInfo"
           onChange={(e) => this.handleInfoChange(productId, e)} 
           placeholder="">
         </textarea>
-        <button onClick={(e) => this.handleRemove(productId, e)}>Remove to cart</button>
-        <Price price={price * quantity} text={''} />
       </form>
     );
   }
