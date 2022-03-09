@@ -7,9 +7,22 @@ import styles from './SummaryItem.module.scss';
 
 const Component = ({ className, summaryItem }) => {
 
+  const { name, quantity, price, additionalInfo } = summaryItem;
+
   return (
     <div className={clsx(className, styles.root)}>
-      {summaryItem}
+      <div>
+        {name}
+        <div className={styles.additionalInfo}>
+          {additionalInfo}
+        </div>
+      </div>
+      <div>
+        {quantity}
+      </div>
+      <div>
+        {price}
+      </div>
     </div>
   );
 };

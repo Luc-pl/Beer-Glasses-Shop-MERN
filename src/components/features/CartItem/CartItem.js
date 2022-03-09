@@ -30,11 +30,11 @@ class Component extends React.Component {
     return (
       <form key={productId} className={clsx(className, styles.root)}>
         <p>{name}</p>
-        <Quantity value={quantity} action={(e) => this.handleQuantityChange(productId, e)} className={styles.inputQuantityPosition} />
+        <Quantity value={quantity} action={(e) => this.handleQuantityChange(productId, e)} className={styles.inputQuantityPosition} id={productId}  />
         <button onClick={(e) => this.handleRemove(e, productId)}>Remove to cart</button>
         <textarea 
           name="additionalInfo" 
-          id="additionalInfo"
+          id={`additionalInfo${productId}`}
           onChange={(e) => this.handleInfoChange(productId, e)} 
           placeholder="">
         </textarea>

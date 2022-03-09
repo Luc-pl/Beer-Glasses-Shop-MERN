@@ -2,12 +2,12 @@
 
 import React from 'react';
 import PropTypes from 'prop-types';
-//import clsx from 'clsx';
+import clsx from 'clsx';
 import { Price } from '../../common/Price/Price';
 import { SummaryItem } from '../../features/SummaryItem/SummaryItem';
 import { addProducts } from '../../../redux/orderRedux';
 import { connect } from 'react-redux';
-//import styles from './Summary.module.scss';
+import styles from './Summary.module.scss';
 import Col from 'react-bootstrap/Col';
 import Row from 'react-bootstrap/Row';
 import Container from 'react-bootstrap/Container';
@@ -18,6 +18,10 @@ class Component extends React.Component {
     const { addProducts, cart } = this.props;
 
     addProducts(cart);
+  }
+
+  handleOrder() {
+
   }
 
   render() {
@@ -36,13 +40,23 @@ class Component extends React.Component {
             <h1>Order Summary</h1>
             {products.length > 0
               ?
-              <div>
+              <div className={clsx(styles.root)}>
+                <div>
+                  Nazwa
+                </div>
+                <div>
+                  Ilość
+                </div>
+                <div>
+                  Cena
+                </div>
                 {products.map(product => <SummaryItem key={product.productId} summaryItem={product} />)}
                 <Price price={orderValue} text={'Subtotal'}/>
               </div>
               :
               <h1>Order is empty</h1>
             }
+            <button action={this.handleOrder.bind(this)} text={'Order & Pay'} path={'summary'}/>
           </Col>
         </Row>
 
