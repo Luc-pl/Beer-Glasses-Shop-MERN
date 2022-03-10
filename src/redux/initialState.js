@@ -57,22 +57,16 @@ export const initialState = {
       // },
     ],
     cart: [],
-    order: [
-      {
-        quantity: 1,
-        courseId: '621f3b4b650d728ffba20c87',
-        name: 'IPA glasses 2',
-        price: 10,
-        additionalInfo: '',
+    order: {
+      status: '',
+      contact: {
+        name: '',
+        email: '',
       },
-      {
-        quantity: 2,
-        courseId: '621f3ab4650d728ffba20c86',
-        name: 'IPA glasses 2',
-        price: 12,
-        additionalInfo: '',
-      },
-    ],
+      privacy: null,
+      terms: null,
+      products: [],
+    },
     user: {
     },
     isLogged: true,
