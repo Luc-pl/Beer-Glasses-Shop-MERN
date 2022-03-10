@@ -1,6 +1,7 @@
 /* eslint-disable linebreak-style */
 import React from 'react';
 import PropTypes from 'prop-types';
+import { Link } from 'react-router-dom';
 import clsx from 'clsx';
 import { Quantity } from '../../features/Quantity/Quantity';
 import styles from './CartItem.module.scss';
@@ -39,6 +40,7 @@ class Component extends React.Component {
           onChange={(e) => handleChange(e, productId)}
           placeholder="">
         </textarea>
+        <button><Link to={`${process.env.PUBLIC_URL}/summary`}>Order & pay</Link></button>
       </form>
     );
   }
