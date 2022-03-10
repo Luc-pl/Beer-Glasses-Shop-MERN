@@ -9,33 +9,34 @@ import { removeFromCart, updateCartItemQuantity, updateCartItemInfo } from '../.
 
 class Component extends React.Component {
 
-  handleQuantityChange(id, e) {
-    this.props.updateCartItemQuantity({ id, quantity: e.target.value });
+  handleChange = ({ target }, id) => {
+    const { value, name } = target;
+    const { updateCartItemQuantity, updateCartItemInfo } = this.props;
+    name === 'quantity' && updateCartItemQuantity({ id, [name]: value });
+    name === 'additionalInfo' && updateCartItemInfo({ id, [name]: value });
   }
 
-  handleInfoChange(id, e) {
-    this.props.updateCartItemInfo({ id, additionalInfo: e.target.value });
-  }
+  handleRemove = (id) => {
+    const { removeFromCart } = this.props;
 
-  handleRemove(id, e) {
-    e.preventDefault();
-    this.props.removeFromCart(id);
+    removeFromCart(id);
   }
 
 
   render() {
+    const { handleChange, handleRemove } = this;
     const { className, cartItem } = this.props;
     const { quantity, productId, name } = cartItem;
 
     return (
       <form key={productId} className={clsx(className, styles.root)}>
         <p>{name}</p>
-        <Quantity value={quantity} action={(e) => this.handleQuantityChange(productId, e)} className={styles.inputQuantityPosition} id={productId}  />
-        <button onClick={(e) => this.handleRemove(e, productId)}>Remove to cart</button>
+        <Quantity value={Number(quantity)} action={(e) => handleChange(e, productId)} className={styles.inputQuantityPosition} id={productId}  />
+        <button action={() => handleRemove(productId)}>Remove to cart</button>
         <textarea 
           name="additionalInfo" 
           id={`additionalInfo${productId}`}
-          onChange={(e) => this.handleInfoChange(productId, e)} 
+          onChange={(e) => handleChange(e, productId)}
           placeholder="">
         </textarea>
       </form>
