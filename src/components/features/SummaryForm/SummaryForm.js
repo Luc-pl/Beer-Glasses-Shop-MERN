@@ -3,9 +3,10 @@
 import React from 'react';
 import PropTypes from 'prop-types';
 //import clsx from 'clsx';
-// import { connect } from 'react-redux';
+import { connect } from 'react-redux';
 // import { reduxSelector, reduxActionCreator } from '../../../redux/exampleRedux.js';
 //import styles from './SummaryForm.module.scss';
+import { postOrder } from '../../../redux/orderRedux';
 import Form from 'react-bootstrap/Form';
 import Button from 'react-bootstrap/Button';
 
@@ -33,6 +34,7 @@ class Component extends React.Component {
 
   handleSubmit = (e) => {
     const { contact } = this.state;
+    const { products, orderValue } = this.props;
     e.preventDefault();
 
     let error = null;
@@ -44,6 +46,8 @@ class Component extends React.Component {
     if (!error) {
       const order = {
         status: 'pending',
+        value: orderValue,
+        products,
         contact,
       };
       console.log(' : handleSubmit -> formData', order);
@@ -129,20 +133,23 @@ class Component extends React.Component {
 Component.propTypes = {
   children: PropTypes.node,
   className: PropTypes.string,
+  orderValue: PropTypes.number,
+  postOrder: PropTypes.func,
+  products: PropTypes.array,
 };
 
-// const mapStateToProps = state => ({
-//   someProp: reduxSelector(state),
-// });
+const mapStateToProps = state => ({
+  products: state.order.products,
+});
 
-// const mapDispatchToProps = dispatch => ({
-//   someAction: arg => dispatch(reduxActionCreator(arg)),
-// });
+const mapDispatchToProps = dispatch => ({
+  postOrder: (order) => dispatch(postOrder(order)),
+});
 
-// const Container = connect(mapStateToProps, mapDispatchToProps)(Component);
+const ReduxContainer = connect(mapStateToProps, mapDispatchToProps)(Component);
 
 export {
-  Component as SummaryForm,
-  // Container as SummaryForm,
+  //Component as SummaryForm,
+  ReduxContainer as SummaryForm,
   Component as SummaryFormComponent,
 };

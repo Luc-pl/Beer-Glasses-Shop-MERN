@@ -41,7 +41,7 @@ class Component extends React.Component {
               ?
               <div>
                 <SummaryItem products={products} orderValue={orderValue} />
-                <SummaryForm />
+                <SummaryForm orderValue={orderValue} />
               </div>
               :
               <h1>Order is empty</h1>
