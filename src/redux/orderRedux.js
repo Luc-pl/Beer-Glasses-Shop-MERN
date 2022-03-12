@@ -43,7 +43,43 @@ export default function reducer(statePart = {}, action = {}) {
     case ADD_PRODUCTS: {
       return {
         ...statePart,
+        status: 'draft',
         products: action.payload,
+      };
+    }
+    case ORDER_START: {
+      return {
+        ...statePart,
+        loading: {
+          active: true,
+          error: false,
+        },
+      };
+    }
+    case ORDER_SUCCESS: {
+      return {
+        lastOrder: action.payload._id,
+        status: 'draft',
+        contact: {
+          name: '',
+          email: '',
+          privacy: null,
+          terms: null,
+        },
+        products: [],
+        loading: {
+          active: false,
+          error: false,
+        },
+      };
+    }
+    case ORDER_ERROR: {
+      return {
+        ...statePart,
+        loading: {
+          active: false,
+          error: action.payload,
+        },
       };
     }
     default:

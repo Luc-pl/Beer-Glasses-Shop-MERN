@@ -58,6 +58,7 @@ export const initialState = {
     ],
     cart: [],
     order: {
+      lastOrder: '',
       status: '',
       contact: {
         name: '',

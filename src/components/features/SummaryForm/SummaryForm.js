@@ -51,7 +51,7 @@ class Component extends React.Component {
         contact,
       };
       console.log(' : handleSubmit -> formData', order);
-      // this.props.submitOrder(formData);
+      this.props.postOrder(order);
 
       this.setState({
         contact: {
@@ -107,9 +107,13 @@ class Component extends React.Component {
             id="privacy" 
             required 
             type="checkbox" 
+            checked={privacy}
             value={privacy} 
             onChange={handleChange}
           />
+          <Form.Text className="text-muted">
+            I hereby give consent for my personal data 
+          </Form.Text>
         </Form.Group>
 
         <Form.Group className="mb-3" controlId="formBasicEmail">
@@ -118,10 +122,14 @@ class Component extends React.Component {
             name="terms" 
             id="terms" 
             required 
-            type="checkbox" 
+            type="checkbox"
+            checked={terms}
             value={terms} 
             onChange={handleChange}
           />
+          <Form.Text className="text-muted">
+            I Agree To Terms.
+          </Form.Text>
         </Form.Group>
           
         <Button variant="primary" type="submit" submitForm={true} text={'Order & Pay'} path={'summary'} />
