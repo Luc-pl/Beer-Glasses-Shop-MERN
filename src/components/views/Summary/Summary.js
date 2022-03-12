@@ -37,18 +37,10 @@ class Component extends React.Component {
         <Row>
           <Col>
             <h1>Order Summary</h1>
-            {products.length > 0
-              ?
-              <div>
-                <SummaryItem products={products} orderValue={orderValue} />
-                <SummaryForm orderValue={orderValue} />
-              </div>
-              :
-              <h1>Order is empty</h1>
-            }
+            {products.length > 0 && <SummaryItem products={products} orderValue={orderValue} />}
+            <SummaryForm orderValue={orderValue} />
           </Col>
         </Row>
-
       </Container>
     );
   }
