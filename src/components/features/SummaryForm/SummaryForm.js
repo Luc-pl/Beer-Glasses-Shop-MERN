@@ -2,10 +2,8 @@
 
 import React from 'react';
 import PropTypes from 'prop-types';
-//import clsx from 'clsx';
 import { connect } from 'react-redux';
-// import { reduxSelector, reduxActionCreator } from '../../../redux/exampleRedux.js';
-//import styles from './SummaryForm.module.scss';
+import { InfoOrder } from '../../common/InfoOrder/InfoOrder';
 import { postOrder } from '../../../redux/orderRedux';
 import Form from 'react-bootstrap/Form';
 import Button from 'react-bootstrap/Button';
@@ -34,7 +32,7 @@ class Component extends React.Component {
 
   handleSubmit = (e) => {
     const { contact } = this.state;
-    const { products, orderValue } = this.props;
+    const { products, orderValue, success } = this.props;
     e.preventDefault();
 
     let error = null;
@@ -45,23 +43,24 @@ class Component extends React.Component {
 
     if (!error) {
       const order = {
-        status: 'pending',
+        status: 'ordered',
         value: orderValue,
         products,
         contact,
       };
-      console.log(' : handleSubmit -> formData', order);
       this.props.postOrder(order);
 
-      this.setState({
-        contact: {
-          name: '',
-          email: '',
-          privacy: false,
-          terms: false,
-        },
-        error: null,
-      });
+      if (success) {
+        this.setState({
+          contact: {
+            name: '',
+            email: '',
+            privacy: false,
+            terms: false,
+          },
+          error: null,
+        });
+      }
     }
     else this.setState({ error });
   }
@@ -69,70 +68,78 @@ class Component extends React.Component {
   render() {
 
     const { handleSubmit, handleChange } = this;
-    //const { className, children } = this.props;
+    const { loading, loadingError, success, products, lastOrder } = this.props;
     const { name, email, privacy, terms } = this.state;
 
     return (
+      
       <Form onSubmit={(e) => handleSubmit(e)}>
-        <Form.Group className="mb-3" controlId="formBasicEmail">
-          <Form.Label>Name</Form.Label>
-          <Form.Control 
-            type="name" 
-            placeholder="Enter yours name"
-            name="name" 
-            id="name" 
-            required 
-            value={name} 
-            onChange={handleChange} 
-          />
-        </Form.Group>
+        {(!loading && !loadingError && success) && <InfoOrder variant={'success'}>{`Orders ${lastOrder} has been placed`}</InfoOrder>}
+        {(loadingError) && <InfoOrder variant={'error'}>{loadingError}</InfoOrder>}
+        {(!loading && products.length > 0) &&
+          (
+            <div>
+              <Form.Group className="mb-3" controlId="formBasicEmail">
+                <Form.Label>Name</Form.Label>
+                <Form.Control 
+                  type="name" 
+                  placeholder="Enter yours name"
+                  name="name" 
+                  id="name" 
+                  required 
+                  value={name} 
+                  onChange={handleChange} 
+                />
+              </Form.Group>
 
-        <Form.Group className="mb-3" controlId="formBasicEmail">
-          <Form.Label>Email</Form.Label>
-          <Form.Control 
-            type="text" 
-            placeholder="Yours email"
-            name="email" 
-            id="email" 
-            required 
-            value={email} 
-            onChange={handleChange} 
-          />
-        </Form.Group>
+              <Form.Group className="mb-3" controlId="formBasicEmail">
+                <Form.Label>Email</Form.Label>
+                <Form.Control 
+                  type="text" 
+                  placeholder="Yours email"
+                  name="email" 
+                  id="email" 
+                  required 
+                  value={email} 
+                  onChange={handleChange} 
+                />
+              </Form.Group>
 
-        <Form.Group className="mb-3" controlId="formBasicEmail">
-          <Form.Label>Privacy</Form.Label>
-          <Form.Control 
-            name="privacy" 
-            id="privacy" 
-            required 
-            type="checkbox" 
-            checked={privacy}
-            value={privacy} 
-            onChange={handleChange}
-          />
-          <Form.Text className="text-muted">
-            I hereby give consent for my personal data 
-          </Form.Text>
-        </Form.Group>
+              <Form.Group className="mb-3" controlId="formBasicEmail">
+                <Form.Label>Privacy</Form.Label>
+                <Form.Control 
+                  name="privacy" 
+                  id="privacy" 
+                  required 
+                  type="checkbox" 
+                  checked={privacy}
+                  value={privacy} 
+                  onChange={handleChange}
+                />
+                <Form.Text className="text-muted">
+                  I hereby give consent for my personal data 
+                </Form.Text>
+              </Form.Group>
 
-        <Form.Group className="mb-3" controlId="formBasicEmail">
-          <Form.Label>Terms</Form.Label>
-          <Form.Control 
-            name="terms" 
-            id="terms" 
-            required 
-            type="checkbox"
-            checked={terms}
-            value={terms} 
-            onChange={handleChange}
-          />
-          <Form.Text className="text-muted">
-            I Agree To Terms.
-          </Form.Text>
-        </Form.Group>
-          
-        <Button variant="primary" type="submit" submitForm={true} text={'Order & Pay'} path={'summary'} />
+              <Form.Group className="mb-3" controlId="formBasicEmail">
+                <Form.Label>Terms</Form.Label>
+                <Form.Control 
+                  name="terms" 
+                  id="terms" 
+                  required 
+                  type="checkbox"
+                  checked={terms}
+                  value={terms} 
+                  onChange={handleChange}
+                />
+                <Form.Text className="text-muted">
+                  I Agree To Terms.
+                </Form.Text>
+              </Form.Group>
+                
+              <Button variant="primary" type="submit" submitForm={true} text={'Order & Pay'} path={'summary'} />
+            </div>
+          )}
       </Form>
     );
   }
@@ -144,10 +151,18 @@ Component.propTypes = {
   orderValue: PropTypes.number,
   postOrder: PropTypes.func,
   products: PropTypes.array,
+  loading: PropTypes.bool,
+  loadingError: PropTypes.bool,
+  success: PropTypes.bool,
+  lastOrder: PropTypes.string,
 };
 
 const mapStateToProps = state => ({
   products: state.order.products,
+  loading: state.order.loading.active,
+  loadingError: state.order.loading.error,
+  success: state.order.loading.success,
+  lastOrder: state.order.lastOrder,
 });
 
 const mapDispatchToProps = dispatch => ({
