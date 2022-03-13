@@ -5,9 +5,7 @@ import PropTypes from 'prop-types';
 import clsx from 'clsx';
 import styles from './SummaryItem.module.scss';
 
-const Component = ({ className, summaryItem }) => {
-
-  const { name, quantity, price, additionalInfo } = summaryItem;
+const Component = ({ className, summaryItem: { name, quantity, price, additionalInfo } }) => {
 
   return (
     <div className={clsx(className, styles.root)}>

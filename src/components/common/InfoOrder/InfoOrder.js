@@ -4,26 +4,32 @@ import React from 'react';
 import PropTypes from 'prop-types';
 import clsx from 'clsx';
 import styles from './InfoOrder.module.scss';
-import Container from 'react-bootstrap/Container';
-import Row from 'react-bootstrap/Row';
-import Col from 'react-bootstrap/Col';
 
-const Component = ({className, children}) => (
-  <div className={clsx(className, styles.root)}>
-    <Container>
-      <Row>
-        <Col>
-          <h1>InfoOrder</h1>
-        </Col>  
-      </Row>  
-    </Container>
-    {children}
-  </div>
-);
+const Component = ({className, children, variant}) => {
+  switch (variant) {
+    case 'success':
+      return <div className={clsx(className, styles.root, styles.success)}>
+        {children}
+      </div>;
+    case 'warning':
+      return <div className={clsx(className, styles.root, styles.warning)}>
+        {children}
+      </div>;
+    case 'error':
+      return <div className={clsx(className, styles.root, styles.error)}>
+        {children}
+      </div>;
+    default:
+      return <div className={clsx(className, styles.root)}>
+        {children}
+      </div>;
+  }
+};
 
 Component.propTypes = {
   children: PropTypes.node,
   className: PropTypes.string,
+  variant: PropTypes.string,
 };
 
 export {

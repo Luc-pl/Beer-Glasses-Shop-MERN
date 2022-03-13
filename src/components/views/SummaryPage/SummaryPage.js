@@ -5,7 +5,7 @@
 import React from 'react';
 import PropTypes from 'prop-types';
 //import clsx from 'clsx';
-import { SummaryItem } from '../../features/SummaryItem/SummaryItem';
+import { Summary } from '../../features/Summary/Summary';
 import { SummaryForm } from '../../features/SummaryForm/SummaryForm';
 import { addProducts } from '../../../redux/orderRedux';
 import { connect } from 'react-redux';
@@ -37,7 +37,12 @@ class Component extends React.Component {
         <Row>
           <Col>
             <h1>Order Summary</h1>
-            {products.length > 0 && <SummaryItem products={products} orderValue={orderValue} />}
+            {products.length 
+              ?
+              <Summary products={products} orderValue={orderValue} />
+              :
+              <h1>No order</h1>
+            }
             <SummaryForm orderValue={orderValue} />
           </Col>
         </Row>
@@ -67,7 +72,7 @@ const mapDispatchToProps = dispatch => ({
 const ReduxContainer = connect(mapStateToProps, mapDispatchToProps)(Component);
 
 export {
-  //Component as Summary,
-  ReduxContainer as Summary,
-  Component as SummaryComponent,
+  //Component as SummaryPage,
+  ReduxContainer as SummaryPage,
+  Component as SummaryPageComponent,
 };

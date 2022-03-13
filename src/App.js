@@ -10,7 +10,7 @@ import { Homepage } from './components/views/Homepage/Homepage';
 import { Login } from './components/views/Login/Login';
 import { Product } from './components/views/Product/Product';
 import { CartPage } from './components/views/CartPage/CartPage';
-import { Summary } from './components/views/Summary/Summary';
+import { SummaryPage } from './components/views/SummaryPage/SummaryPage';
 import { NotFound } from './components/views/NotFound/NotFound';
 
 const App = () => (
@@ -21,7 +21,7 @@ const App = () => (
           <Route exact path={`${process.env.PUBLIC_URL}/`} component={Homepage} />
           <Route exact path={`${process.env.PUBLIC_URL}/product/:_id`} component={Product} />
           <Route exact path={`${process.env.PUBLIC_URL}/cart`} component={CartPage} />
-          <Route exact path={`${process.env.PUBLIC_URL}/summary`} component={Summary} />
+          <Route exact path={`${process.env.PUBLIC_URL}/summary`} component={SummaryPage} />
           <Route exact path={`${process.env.PUBLIC_URL}/login`} component={Login} />
           <Route exact path={`${process.env.PUBLIC_URL}/logout`} component={Homepage} />
           <Route exact path={`${process.env.PUBLIC_URL}*`} component={NotFound} />
