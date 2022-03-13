@@ -7,6 +7,7 @@ import { store } from './redux/store';
 
 import { MainLayout } from './components/layout/MainLayout/MainLayout';
 import { Homepage } from './components/views/Homepage/Homepage';
+import Contact from './components/views/Contact/Contact';
 import { Login } from './components/views/Login/Login';
 import { Product } from './components/views/Product/Product';
 import { CartPage } from './components/views/CartPage/CartPage';
@@ -24,6 +25,7 @@ const App = () => (
           <Route exact path={`${process.env.PUBLIC_URL}/summary`} component={SummaryPage} />
           <Route exact path={`${process.env.PUBLIC_URL}/login`} component={Login} />
           <Route exact path={`${process.env.PUBLIC_URL}/logout`} component={Homepage} />
+          <Route exact path={`${process.env.PUBLIC_URL}/contact`} component={Contact} />
           <Route exact path={`${process.env.PUBLIC_URL}*`} component={NotFound} />
         </Switch>
       </MainLayout>
