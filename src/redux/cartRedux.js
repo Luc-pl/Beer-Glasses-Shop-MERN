@@ -1,4 +1,6 @@
 /* eslint-disable linebreak-style */
+import Axios from 'axios';
+import { api } from '../settings';
 
 /* selectors */
 export const getCart = (state) => state.cart;
@@ -12,31 +14,138 @@ const createActionName = name => `app/${reducerName}/${name}`;
 const ADD_TO_CART = createActionName('ADD_TO_CART');
 const REMOVE_FROM_CART = createActionName('REMOVE_FROM_CART');
 const CLEAR_CART = createActionName('CLEAR_CART');
+const UPDATE_CART = createActionName('UPDATE_CART');
 const UPDATE_CART_ITEM_QUANTITY = createActionName('UPDATE_CART_ITEM_QUANTITY');
 const UPDATE_CART_ITEM_INFO = createActionName('UPDATE_CART_ITEM_INFO');
 
 
 /* action creators */
-export const addToCart = payload => ({ payload, type: ADD_TO_CART });
-export const removeFromCart = payload => ({ payload, type: REMOVE_FROM_CART });
-export const clearCart = payload => ({ payload, type: CLEAR_CART });
-export const updateCartItemQuantity = payload => ({ payload, type: UPDATE_CART_ITEM_QUANTITY });
-export const updateCartItemInfo = payload => ({ payload, type: UPDATE_CART_ITEM_INFO });
+export const addToCartCreator = payload => ({ payload, type: ADD_TO_CART });
+export const removeFromCartCreator = payload => ({ payload, type: REMOVE_FROM_CART });
+export const clearCartCreator = payload => ({ payload, type: CLEAR_CART });
+export const updateCart = payload => ({ payload, type: UPDATE_CART });
+export const updateCartItemQuantityCreator = payload => ({ payload, type: UPDATE_CART_ITEM_QUANTITY });
+export const updateCartItemInfoCreator = payload => ({ payload, type: UPDATE_CART_ITEM_INFO });
+
+
+/* thunk creators */
+export const addToCart = (cartItem) => {
+  return (dispatch, getState) => {
+    dispatch(addToCartCreator(cartItem));
+    const { cart, isLogged, user } = getState();
+
+    if (isLogged) {
+      Axios
+        .put(`${api.url}/${api.users}/${user.id}`, cart)
+        .then(res => {
+          console.log(' : addToCart -> res.data', res.data);
+        })
+        .catch(err => {
+          console.log(' : addToCart -> err.message', err.message);
+        });
+    }
+  };
+};
+
+export const removeFromCart = (cartId) => {
+  return (dispatch, getState) => {
+    dispatch(removeFromCartCreator(cartId));
+    const { cart, isLogged, user } = getState();
+
+    if (isLogged) {
+      Axios
+        .put(`${api.url}/${api.users}/${user.id}`, cart)
+        .then(res => {
+          console.log(' : addToCart -> res.data', res.data);
+        })
+        .catch(err => {
+          console.log(' : addToCart -> err.message', err.message);
+        });
+    }
+  };
+};
+export const clearCart = () => {
+  return (dispatch, getState) => {
+    dispatch(clearCartCreator());
+    const { cart, isLogged, user } = getState();
+
+    if (isLogged) {
+      Axios
+        .put(`${api.url}/${api.users}/${user.id}`, cart)
+        .then(res => {
+          console.log(' : addToCart -> res.data', res.data);
+        })
+        .catch(err => {
+          console.log(' : addToCart -> err.message', err.message);
+        });
+    }
+  };
+};
+
+export const updateCartItemQuantity = (obj) => {
+  return (dispatch, getState) => {
+    dispatch(updateCartItemQuantityCreator(obj));
+    const { cart, isLogged, user } = getState();
+
+    if (isLogged) {
+      Axios
+        .put(`${api.url}/${api.users}/${user.id}`, cart)
+        .then(res => {
+          console.log(' : addToCart -> res.data', res.data);
+        })
+        .catch(err => {
+          console.log(' : addToCart -> err.message', err.message);
+        });
+    }
+  };
+};
+
+export const updateCartItemInfo = (obj) => {
+  return (dispatch, getState) => {
+    dispatch(updateCartItemInfoCreator(obj));
+    const { cart, isLogged, user } = getState();
+    localStorage.setItem('cart', JSON.stringify(cart));
+
+    if (isLogged) {
+      Axios
+        .put(`${api.url}/${api.users}/${user.id}`, cart)
+        .then(res => {
+          console.log(' : addToCart -> res.data', res.data);
+        })
+        .catch(err => {
+          console.log(' : addToCart -> err.message', err.message);
+        });
+    }
+  };
+};
+
 
 /* reducer */
 export default function reducer(statePart = [], action = {}) {
   switch (action.type) {
+    case UPDATE_CART: {
+      return action.payload;
+    }
     case ADD_TO_CART: {
-      return [
-        ...statePart,
-        action.payload,
-      ];
+      const isItemInCart = statePart.some(cartItem => cartItem.productId === action.payload.productId);
+
+      return isItemInCart
+        ? statePart.map(cartItem => cartItem.productId === action.payload.productId
+          ?
+          {
+            ...action.payload,
+            quantity: Number(action.payload.quantity) + Number(cartItem.quantity),
+          }
+          :
+          cartItem)
+        :
+        [
+          ...statePart,
+          action.payload,
+        ];
     }
     case REMOVE_FROM_CART: {
-      return [
-        ...statePart,
-        action.payload,
-      ];
+      return statePart.filter(({ productId }) => productId !== action.payload);
     }
     case CLEAR_CART: {
       return [];

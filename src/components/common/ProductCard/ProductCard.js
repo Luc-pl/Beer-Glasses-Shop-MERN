@@ -1,3 +1,4 @@
+/* eslint-disable linebreak-style */
 import React from 'react';
 import PropTypes from 'prop-types';
 import Card from 'react-bootstrap/Card';
@@ -12,8 +13,8 @@ const Component = ({product}) => {
 
   return (
     <Link style={{ textDecoration: 'none' }} to={`${process.env.PUBLIC_URL}/product/${_id}`}>
-      <Row>
-        <Card className={styles.productBox}>
+      <Row className={styles.productBox}>
+        <Card>
           <Card.Img variant="top" src={image} />
           <Card.Body>
             <Card.Title>{name}</Card.Title>

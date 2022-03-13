@@ -1,8 +1,10 @@
+/* eslint-disable linebreak-style */
 import {combineReducers, createStore, applyMiddleware} from 'redux';
 import thunk from 'redux-thunk';
 import { composeWithDevTools } from 'redux-devtools-extension';
 import loginReducer from './loginRedux';
 import cartReducer from './cartRedux';
+import orderReducer from './orderRedux';
 import { initialState } from './initialState';
 import { reducer as productsReducer } from './productsRedux';
 
@@ -11,6 +13,7 @@ const reducers = {
   products: productsReducer,
   isLogged: loginReducer,
   cart: cartReducer,
+  order: orderReducer,
 };
 
 // add blank reducers for initial state properties without reducers

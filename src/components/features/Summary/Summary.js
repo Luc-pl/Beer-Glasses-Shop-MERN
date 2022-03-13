@@ -15,7 +15,7 @@ const Component = ({className, products, orderValue}) => (
     </div>
     {products.map(product =>
       <SummaryItem
-        key={product.courseId}
+        key={product.productId}
         summaryItem={product}
       />)}
     <Price price={orderValue} text='Cost: ' />

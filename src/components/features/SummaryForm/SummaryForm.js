@@ -143,7 +143,7 @@ class Component extends React.Component {
                 </Form.Text>
               </Form.Group>
                 
-              <Button variant="primary" type="submit" submitForm={true} text={'Order & Pay'} path={'summary'} />
+              <Button variant="primary" type="submit" submitForm={true} text={'Order & Pay'} path={'summary'}>Order & pay</Button>
             </div>
           )}
       </Form>
