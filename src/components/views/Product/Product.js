@@ -86,10 +86,12 @@ class Component extends React.Component {
                 <div className={styles.cardLine}></div>
                 {isProductInCart
                   ?
-                  <div>
-                    <div>Product in yours cart</div>
-                    <button><Link to={`${process.env.PUBLIC_URL}/cart`}>Check yours cart</Link></button>
-                  </div> 
+                  <Row>
+                    <div>
+                      <div>Product in yours cart</div>
+                      <button className={styles.buttonProduct}><Link to={`${process.env.PUBLIC_URL}/cart`} className={styles.buttonInfo}>Check yours cart</Link></button>
+                    </div> 
+                  </Row>                 
                   :
                   <Row>
                     <Col>
@@ -99,6 +101,7 @@ class Component extends React.Component {
                           type="submit" 
                           onAddToCartClicked={() => addToCart(product._id)}
                           value="+ ADD TO CART" 
+                          className={styles.buttonProductTwo}
                         />
                       </form>
                     </Col>
