@@ -4,7 +4,7 @@ import React from 'react';
 import PropTypes from 'prop-types';
 import { connect } from 'react-redux';
 import { InfoOrder } from '../../common/InfoOrder/InfoOrder';
-import { postOrder } from '../../../redux/orderRedux';
+import { postOrder, clearSuccess } from '../../../redux/orderRedux';
 import Form from 'react-bootstrap/Form';
 import Button from 'react-bootstrap/Button';
 
@@ -28,19 +28,23 @@ class Component extends React.Component {
     } else {
       this.setState({ contact: { ...contact, [name]: !contact[name] } }, () => console.log(this.state.contact));
     }
+    this.setState({ error: null });
   }
 
   handleSubmit = (e) => {
     const { contact } = this.state;
-    const { products, orderValue, success } = this.props;
+    const { products, orderValue, success, postOrder } = this.props;
     e.preventDefault();
 
     let error = null;
 
+    const emailPattern = new RegExp(/^\w+([.-]?\w+)*@\w+([.-]?\w+)*(\.\w{2,3})+$/, 'g');
+
     if (!contact.name.length || !contact.email.length) error = `Fill your name and e-mail`;
     else if (!contact.privacy || !contact.terms) error = `Accept the consents`;
     else if (contact.name.length > 50) error = `Name must have max. 50 signs`;
-
+    else if (!emailPattern.test(contact.email)) error = `Wrong email`;
+    
     if (!error) {
       const order = {
         status: 'ordered',
@@ -49,6 +53,8 @@ class Component extends React.Component {
         contact,
       };
       this.props.postOrder(order);
+
+      postOrder(order);
 
       if (success) {
         this.setState({
@@ -68,14 +74,14 @@ class Component extends React.Component {
   render() {
 
     const { handleSubmit, handleChange } = this;
-    const { loading, loadingError, success, products, lastOrder } = this.props;
+    const { loading, loadingError, success, products, lastOrder, clearSuccess } = this.props;
     const { name, email, privacy, terms } = this.state;
 
     return (
       
       <Form onSubmit={(e) => handleSubmit(e)}>
-        {(!loading && !loadingError && success) && <InfoOrder variant={'success'}>{`Orders ${lastOrder} has been placed`}</InfoOrder>}
-        {(loadingError) && <InfoOrder variant={'error'}>{loadingError}</InfoOrder>}
+        {(!loading && !loadingError && success) && <InfoOrder variant={'success'} close={clearSuccess}>{`Orders ${lastOrder} has been placed`}</InfoOrder>}
+        {(loadingError) && <InfoOrder variant={'error'}>{'Orders wrong'}</InfoOrder>}
         {(!loading && products.length > 0) &&
           (
             <div>
@@ -155,6 +161,7 @@ Component.propTypes = {
   loadingError: PropTypes.bool,
   success: PropTypes.bool,
   lastOrder: PropTypes.string,
+  clearSuccess: PropTypes.func,
 };
 
 const mapStateToProps = state => ({
@@ -167,6 +174,7 @@ const mapStateToProps = state => ({
 
 const mapDispatchToProps = dispatch => ({
   postOrder: (order) => dispatch(postOrder(order)),
+  clearSuccess: () => dispatch(clearSuccess()),
 });
 
 const ReduxContainer = connect(mapStateToProps, mapDispatchToProps)(Component);
