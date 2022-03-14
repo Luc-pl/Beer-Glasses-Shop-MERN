@@ -5,6 +5,8 @@ import clsx from 'clsx';
 import { Quantity } from '../../features/Quantity/Quantity';
 import styles from './CartItem.module.scss';
 import { connect } from 'react-redux';
+import Row from 'react-bootstrap/Row';
+import Col from 'react-bootstrap/Col';
 import { removeFromCart, updateCartItemQuantity, updateCartItemInfo } from '../../../redux/cartRedux';
 
 class Component extends React.Component {
@@ -24,20 +26,29 @@ class Component extends React.Component {
   render() {
     const { handleChange, handleRemove } = this;
     const { className, cartItem } = this.props;
-    const { quantity, productId, name } = cartItem;
+    const { quantity, productId, name, image } = cartItem;
 
     return (
-      <form key={productId} className={clsx(className, styles.root)}>
-        <p>{name}</p>
-        <Quantity value={Number(quantity)} action={(e) => handleChange(e, productId)} className={styles.inputQuantityPosition} id={productId}  />
-        <button action={() => handleRemove(productId)}>Remove to cart</button>
-        <textarea 
-          name="additionalInfo" 
-          id={`additionalInfo${productId}`}
-          onChange={(e) => handleChange(e, productId)}
-          placeholder="">
-        </textarea>
-      </form>
+      <Row>
+        <form key={productId} className={clsx(className, styles.root)}>
+          <Col xs={2}>{image}</Col>
+          <Col xs={4}>{name}</Col>
+          <Col xs={4}><Quantity value={Number(quantity)} action={(e) => handleChange(e, productId)} className={styles.inputQuantityPosition} id={productId}  />
+            <button action={() => handleRemove(productId)}>Remove to cart</button>
+          </Col>
+          <Row>
+            <Col xs={8}>
+              <textarea 
+                name="additionalInfo" 
+                id={`additionalInfo${productId}`}
+                onChange={(e) => handleChange(e, productId)}
+                placeholder="">
+              </textarea>
+            </Col>            
+          </Row>
+        </form>
+      </Row>
+
     );
   }
 }

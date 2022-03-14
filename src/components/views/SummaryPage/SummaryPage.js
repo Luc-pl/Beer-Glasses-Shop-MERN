@@ -9,8 +9,7 @@ import { Summary } from '../../features/Summary/Summary';
 import { SummaryForm } from '../../features/SummaryForm/SummaryForm';
 import { addProducts } from '../../../redux/orderRedux';
 import { connect } from 'react-redux';
-//import styles from './Summary.module.scss';
-import Col from 'react-bootstrap/Col';
+import styles from './SummaryPage.module.scss';
 import Row from 'react-bootstrap/Row';
 import Container from 'react-bootstrap/Container';
 
@@ -34,8 +33,7 @@ class Component extends React.Component {
 
     return(
       <Container>
-        <Row>
-          <Col>
+        <Row className={styles.cardSummary}>
             <h1>Order Summary</h1>
             {products.length 
               ?
@@ -44,7 +42,6 @@ class Component extends React.Component {
               <h1>No order</h1>
             }
             <SummaryForm orderValue={orderValue} />
-          </Col>
         </Row>
       </Container>
     );

@@ -24,7 +24,7 @@ const Component = ({ className, cart }) => {
 
   return (
     <Container className={clsx(className, styles.root)}>
-      <Card>
+      <Card className={styles.cardProduct}>
         <Card.Body>
           <h2>Your Cart</h2>
           {cart.length 
