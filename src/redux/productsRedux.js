@@ -1,3 +1,4 @@
+/* eslint-disable linebreak-style */
 import Axios from 'axios';
 import { api } from '../settings.js';
 

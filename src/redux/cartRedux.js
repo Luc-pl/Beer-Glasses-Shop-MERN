@@ -29,10 +29,18 @@ export const updateCartItemInfoCreator = payload => ({ payload, type: UPDATE_CAR
 
 
 /* thunk creators */
+
+export const cartFromLocalStorage = () => {
+  return (dispatch, getState) => {
+    dispatch(updateCart(JSON.parse(localStorage.getItem('cart'))));
+  };
+};
+
 export const addToCart = (cartItem) => {
   return (dispatch, getState) => {
     dispatch(addToCartCreator(cartItem));
     const { cart, isLogged, user } = getState();
+    localStorage.setItem('cart', JSON.stringify(cart));
 
     if (isLogged) {
       Axios
@@ -64,6 +72,7 @@ export const removeFromCart = (cartId) => {
     }
   };
 };
+
 export const clearCart = () => {
   return (dispatch, getState) => {
     dispatch(clearCartCreator());
