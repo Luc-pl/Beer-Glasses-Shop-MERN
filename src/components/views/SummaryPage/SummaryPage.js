@@ -7,7 +7,7 @@ import PropTypes from 'prop-types';
 //import clsx from 'clsx';
 import { Summary } from '../../features/Summary/Summary';
 import { SummaryForm } from '../../features/SummaryForm/SummaryForm';
-import { addProducts } from '../../../redux/orderRedux';
+import { fetchProductsFromCart } from '../../../redux/orderRedux';
 import { connect } from 'react-redux';
 import styles from './SummaryPage.module.scss';
 import Row from 'react-bootstrap/Row';
@@ -17,9 +17,9 @@ import Container from 'react-bootstrap/Container';
 class Component extends React.Component { 
 
   componentDidMount() {
-    const { addProducts, cart } = this.props;
+    const { fetchProductsFromCart, cart } = this.props;
 
-    addProducts(cart);
+    fetchProductsFromCart(cart);
   }
 
   render() {
@@ -52,7 +52,7 @@ Component.propTypes = {
   children: PropTypes.node,
   className: PropTypes.string,
   products: PropTypes.array,
-  addProducts: PropTypes.func,
+  fetchProductsFromCart: PropTypes.func,
   cart: PropTypes.array,
 };
 
@@ -63,7 +63,7 @@ const mapStateToProps = state => ({
 
 
 const mapDispatchToProps = dispatch => ({
-  addProducts: cart => dispatch(addProducts(cart)),
+  fetchProductsFromCart: cart => dispatch(fetchProductsFromCart(cart)),
 });
 
 const ReduxContainer = connect(mapStateToProps, mapDispatchToProps)(Component);

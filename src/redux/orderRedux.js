@@ -11,14 +11,14 @@ const reducerName = 'order';
 const createActionName = name => `app/${reducerName}/${name}`;
 
 /* action types */
-const ADD_PRODUCTS = createActionName('ADD_PRODUCTS');
+const FETCH_PRODUCTS_FROM_CART = createActionName('FETCH_PRODUCTS_FROM_CART');
 const ORDER_START = createActionName('ORDER_START');
 const ORDER_SUCCESS = createActionName('ORDER_SUCCESS');
 const ORDER_ERROR = createActionName('ORDER_ERROR');
 const CLEAR_SUCCESS = createActionName('CLEAR_SUCCESS');
 
 /* action creators */
-export const addProducts = payload => ({ payload, type: ADD_PRODUCTS });
+export const fetchProductsFromCart = payload => ({ payload, type: FETCH_PRODUCTS_FROM_CART });
 export const orderStarted = payload => ({ payload, type: ORDER_START });
 export const orderSuccess = payload => ({ payload, type: ORDER_SUCCESS });
 export const orderError = payload => ({ payload, type: ORDER_ERROR });
@@ -44,7 +44,7 @@ export const postOrder = (order) => {
 /* reducer */
 export default function reducer(statePart = {}, action = {}) {
   switch (action.type) {
-    case ADD_PRODUCTS: {
+    case FETCH_PRODUCTS_FROM_CART: {
       return {
         ...statePart,
         status: 'draft',

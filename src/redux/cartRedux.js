@@ -1,6 +1,7 @@
 /* eslint-disable linebreak-style */
 import Axios from 'axios';
 import { api } from '../settings';
+import { fetchProductsFromCart } from './orderRedux';
 
 /* selectors */
 export const getCart = (state) => state.cart;
@@ -33,6 +34,8 @@ export const updateCartItemInfoCreator = payload => ({ payload, type: UPDATE_CAR
 export const cartFromLocalStorage = () => {
   return (dispatch, getState) => {
     dispatch(updateCart(JSON.parse(localStorage.getItem('cart'))));
+    const { cart } = getState();
+    dispatch(fetchProductsFromCart(cart));
   };
 };
 
