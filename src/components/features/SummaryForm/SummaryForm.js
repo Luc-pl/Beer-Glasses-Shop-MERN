@@ -113,12 +113,12 @@ class Component extends React.Component {
 
               <Form.Group className="mb-3" controlId="formBasicEmail">
                 <Form.Label>Privacy</Form.Label>
-                <Form.Control 
+                <input
                   name="privacy" 
                   id="privacy" 
                   required 
                   type="checkbox" 
-                  checked={privacy}
+                  checked
                   value={privacy} 
                   onChange={handleChange}
                 />
@@ -129,7 +129,7 @@ class Component extends React.Component {
 
               <Form.Group className="mb-3" controlId="formBasicEmail">
                 <Form.Label>Terms</Form.Label>
-                <Form.Control 
+                <input
                   name="terms" 
                   id="terms" 
                   required 

@@ -1,3 +1,4 @@
+/* eslint-disable linebreak-style */
 import React from 'react';
 import PropTypes from 'prop-types';
 import Hero from '../../layout/Hero/Hero';
@@ -6,14 +7,19 @@ import { ProductCards } from '../../layout/ProductCards/ProductCards';
 import clsx from 'clsx';
 import { connect } from 'react-redux';
 import { getAllProducts, fetchProducts } from '../../../redux/productsRedux';
+import { cartFromLocalStorage } from '../../../redux/cartRedux';
 
 import styles from './Homepage.module.scss';
 
 class Component extends React.Component {
   componentDidMount() {
-    const { fetchProducts } = this.props;
-    fetchProducts();
+    const { fetchProducts, products, cartFromLocalStorage } = this.props;
+    if (products.length === 0) {
+      fetchProducts();
+    }
+    cartFromLocalStorage();
   }
+
 
   render() {
     const { className, products} = this.props;
@@ -33,6 +39,7 @@ Component.propTypes = {
   className: PropTypes.string,
   products: PropTypes.array,
   fetchProducts: PropTypes.func,
+  cartFromLocalStorage: PropTypes.func,
 };
 
 const mapStateToProps = state => ({
@@ -41,6 +48,7 @@ const mapStateToProps = state => ({
 
 const mapDispatchToProps = dispatch => ({
   fetchProducts: () => dispatch(fetchProducts()),
+  cartFromLocalStorage: () => dispatch(cartFromLocalStorage()),
 });
 
 const Container = connect(mapStateToProps, mapDispatchToProps)(Component);
