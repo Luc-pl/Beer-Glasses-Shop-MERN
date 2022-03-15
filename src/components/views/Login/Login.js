@@ -12,7 +12,9 @@ const Component = ({ className, isLogged }) => {
       {isLogged ?
         <Container>
           <Row>
-            <h1>You are logged in</h1>
+            <Col>
+              <h1>You are logged in</h1>
+            </Col>
           </Row>
         </Container>        
         :

@@ -33,7 +33,7 @@ export const updateCartItemInfoCreator = payload => ({ payload, type: UPDATE_CAR
 
 export const cartFromLocalStorage = () => {
   return (dispatch, getState) => {
-    dispatch(updateCart(JSON.parse(localStorage.getItem('cart'))));
+    dispatch(updateCart(JSON.parse(localStorage.getItem('cart')) || []));
     const { cart } = getState();
     dispatch(fetchProductsFromCart(cart));
   };

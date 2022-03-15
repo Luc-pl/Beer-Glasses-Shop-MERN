@@ -8,16 +8,18 @@ import clsx from 'clsx';
 import { connect } from 'react-redux';
 import { getAllProducts, fetchProducts } from '../../../redux/productsRedux';
 import { cartFromLocalStorage } from '../../../redux/cartRedux';
+import { fetchLogin } from '../../../redux/loginRedux';
 
 import styles from './Homepage.module.scss';
 
 class Component extends React.Component {
   componentDidMount() {
-    const { fetchProducts, products, cartFromLocalStorage } = this.props;
+    const { fetchProducts, products, cartFromLocalStorage, fetchLogin } = this.props;
     if (products.length === 0) {
       fetchProducts();
     }
     cartFromLocalStorage();
+    fetchLogin();
   }
 
 
@@ -40,6 +42,7 @@ Component.propTypes = {
   products: PropTypes.array,
   fetchProducts: PropTypes.func,
   cartFromLocalStorage: PropTypes.func,
+  fetchLogin: PropTypes.func,
 };
 
 const mapStateToProps = state => ({
@@ -49,6 +52,7 @@ const mapStateToProps = state => ({
 const mapDispatchToProps = dispatch => ({
   fetchProducts: () => dispatch(fetchProducts()),
   cartFromLocalStorage: () => dispatch(cartFromLocalStorage()),
+  fetchLogin: () => dispatch(fetchLogin()),
 });
 
 const Container = connect(mapStateToProps, mapDispatchToProps)(Component);
