@@ -10,11 +10,7 @@ const mongoose = require('mongoose');
 
 const productsRoutes = require('./routes/products.routes');
 const ordersRoutes = require('./routes/orders.routes');
-<<<<<<< HEAD
 const usersRoutes = require('./routes/users.routes');
-=======
-const userRoutes = require('./routes/user.routes');
->>>>>>> 590314873792085ce9881d27c0ed1a68cc650212
 
 const app = express();
 
