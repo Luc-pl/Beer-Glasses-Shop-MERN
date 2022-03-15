@@ -25,6 +25,7 @@ const App = () => (
           <Route exact path={`${process.env.PUBLIC_URL}/summary`} component={SummaryPage} />
           <Route exact path={`${process.env.PUBLIC_URL}/login`} component={Login} />
           <Route exact path={`${process.env.PUBLIC_URL}/logout`} component={Homepage} />
+          <Route exact path={`${process.env.PUBLIC_URL}/auth/google/callback`} component={Homepage} />
           <Route exact path={`${process.env.PUBLIC_URL}/contact`} component={Contact} />
           <Route exact path={`${process.env.PUBLIC_URL}*`} component={NotFound} />
         </Switch>
