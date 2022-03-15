@@ -10,6 +10,7 @@ const mongoose = require('mongoose');
 
 const productsRoutes = require('./routes/products.routes');
 const ordersRoutes = require('./routes/orders.routes');
+const userRoutes = require('./routes/user.routes');
 
 const app = express();
 
@@ -42,6 +43,7 @@ app.use(express.urlencoded({ extended: false }));
 /* API ENDPOINTS */
 app.use('/api', productsRoutes);
 app.use('/api', ordersRoutes);
+app.use('/api', userRoutes);
 
 // app.get('/auth/google', passport.authenticate('google', { scope: ['email', 'profile'] }));
 
