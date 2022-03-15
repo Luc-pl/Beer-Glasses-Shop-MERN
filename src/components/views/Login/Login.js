@@ -1,37 +1,51 @@
+/* eslint-disable linebreak-style */
 import React from 'react';
 import PropTypes from 'prop-types';
-
 import clsx from 'clsx';
-
-// import { connect } from 'react-redux';
-// import { reduxSelector, reduxActionCreator } from '../../../redux/exampleRedux.js';
-
+import { connect } from 'react-redux';
+import { Row, Container, Col } from 'react-bootstrap';
 import styles from './Login.module.scss';
 
-const Component = ({className, children}) => (
-  <div className={clsx(className, styles.root)}>
-    <h2>Login</h2>
-    {children}
-  </div>
-);
-
-Component.propTypes = {
-  children: PropTypes.node,
-  className: PropTypes.string,
+const Component = ({ className, isLogged }) => {
+  return (
+    <main className={clsx(className, styles.root)}>
+      {isLogged ?
+        <Container>
+          <Row>
+            <h1>You are logged in</h1>
+          </Row>
+        </Container>        
+        :
+        <Container>
+          <Row>
+            <Col>
+              <a className={clsx(styles.loginBtn, styles.loginBtnGoogle)} href="http://localhost:8000/auth/google">
+                Login with Google
+              </a>
+            </Col>            
+          </Row>
+        </Container>     
+      }
+    </main>
+  );
 };
 
-// const mapStateToProps = state => ({
-//   someProp: reduxSelector(state),
-// });
+Component.propTypes = {
+  className: PropTypes.string,
+  isLogged: PropTypes.bool,
+};
 
-// const mapDispatchToProps = dispatch => ({
-//   someAction: arg => dispatch(reduxActionCreator(arg)),
-// });
+const mapStateToProps = state => ({
+  isLogged: state.isLogged,
+});
 
-// const Container = connect(mapStateToProps, mapDispatchToProps)(Component);
+const mapDispatchToProps = dispatch => ({
+});
+
+const ReduxContainer = connect(mapStateToProps, mapDispatchToProps)(Component);
 
 export {
-  Component as Login,
-  // Container as Login,
+  //Component as Login,
+  ReduxContainer as Login,
   Component as LoginComponent,
 };

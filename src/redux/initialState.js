@@ -24,7 +24,7 @@ export const initialState = {
     },
   },
   user: {},
-  isLogged: true,
+  isLogged: false,
   products: {
     currentProduct: {},
     data: [],
