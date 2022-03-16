@@ -17,7 +17,7 @@ const Component = ({ className, summaryItem: { name, quantity, price, additional
         <p>{quantity}</p>
       </Col>
       <Col xs={3}>
-        <p>{price}</p>
+        <p>{`${price}$`}</p>
       </Col>
       <Col xs={3}>
         <p>{additionalInfo}</p>
