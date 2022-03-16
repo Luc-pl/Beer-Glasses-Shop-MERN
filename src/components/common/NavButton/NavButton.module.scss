@@ -1,4 +1,21 @@
 @import '../../../styles/settings.scss';
 
-// .root {
-// }
+.root {
+    display: block;
+    position: relative;
+}
+  
+.quantity {
+    position: absolute;
+    width: 30px;
+    height: 30px;
+    background-color: orange;
+    border-radius: 50%;
+    left: 90%;
+    top: 10%;
+    display: flex;
+    justify-content: center;
+    align-items: center;
+    font-size: 14px;
+    color: white;
+}

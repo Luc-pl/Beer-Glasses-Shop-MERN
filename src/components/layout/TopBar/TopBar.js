@@ -32,7 +32,7 @@ class Component extends React.Component {
             <Col style={isOpen ? this.classes.menu : null} className={`col ${styles.topMenu}`}>
               <ul>
                 <li>
-                  <NavButton text={'Cart'} path={'cart'} />
+                  <NavButton text={'Cart'} path={'cart'} cartVariant />
                 </li>
                 <li>
                   <NavButton text={'Contact'} path={'contact'} />
