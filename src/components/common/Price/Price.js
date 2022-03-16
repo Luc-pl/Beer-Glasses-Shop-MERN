@@ -8,7 +8,7 @@ import styles from './Price.module.scss';
 
 const Component = ({ className, children, price }) => (
   <p className={clsx(className, styles.root)}>
-    {`Total price: ${price}`}
+    {`Price: ${price}$`}
   </p>
 );
 

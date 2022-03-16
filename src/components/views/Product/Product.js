@@ -95,7 +95,7 @@ class Component extends React.Component {
                   :
                   <Row>
                     <Col>
-                      <form className={styles.addCartForm} onSubmit={(e) => handleSubmit(e, _id)}>
+                      <form className={styles.addCartForm} onSubmit={(e) => handleSubmit(e, _id, name, price, image)}>
                         <Quantity value={Number(quantity)} action={handleChange} />
                         <input 
                           type="submit" 

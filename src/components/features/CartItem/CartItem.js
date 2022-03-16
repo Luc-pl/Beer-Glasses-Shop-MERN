@@ -27,28 +27,34 @@ class Component extends React.Component {
   render() {
     const { handleChange, handleRemove } = this;
     const { className, cartItem } = this.props;
-    const { name, image, quantity, productId, price, additionalInfo } = cartItem;
+    const { name, quantity, productId, price, additionalInfo } = cartItem;
 
     return (
       <Row>
         <form className={clsx(className, styles.root)}>
-          <Col xs={2}>{image}</Col>
-          <Col xs={4}>{name}</Col>
-          <Col xs={4}><Quantity value={Number(quantity)} action={(e) => handleChange(e, productId)} className={styles.inputQuantityPosition} id={productId}  />
-            <button action={() => handleRemove(productId)}>Remove to cart</button>
-          </Col>
-          <Row>
-            <Col xs={8}>
-              <textarea 
-                name="additionalInfo" 
-                id={`additionalInfo${productId}`}
-                onChange={(e) => handleChange(e, productId)}
-                placeholder=""
-                value={additionalInfo}>
-              </textarea>
-            </Col>            
+          <Row className={styles.rowCart}>
+            <Col xs={3}>
+              {name}
+            </Col>
+            <Col xs={3}>
+              <Quantity value={Number(quantity)} action={(e) => handleChange(e, productId)} className={styles.inputQuantityPosition} id={productId}  />
+            </Col>
+            <Col xs={3}>
+              <Price price={price * quantity} text={''} />
+            </Col>
+            <Col xs={3}>
+              <button action={() => handleRemove(productId)}>Remove to cart</button> 
+            </Col>
           </Row>
-          <Price price={price * quantity} text={''} />
+          <Row className={styles.sendInfo}>
+            <textarea 
+              name="additionalInfo" 
+              id={`additionalInfo${productId}`}
+              onChange={(e) => handleChange(e, productId)}
+              placeholder="Important notes for the seller"
+              value={additionalInfo}
+            />           
+          </Row>
         </form>
       </Row>
 
