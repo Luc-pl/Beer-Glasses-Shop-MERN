@@ -6,8 +6,8 @@ Full stack e-commerce app created with React, Redux and Bootstrap library. Backe
 
 1. yarn install
 2. run local mongo db with mongod
-3. yarn start-server - app at http://localhost:8000
-4. yarn start - app in development mode at http://localhost:3000
+3. yarn start - app in development mode at http://localhost:3000
+4. npx nodemon backend/server.js - app at http://localhost:8000
 
 ## Available Scripts
 
