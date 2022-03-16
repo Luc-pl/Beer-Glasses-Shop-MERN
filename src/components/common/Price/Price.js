@@ -20,6 +20,5 @@ Component.propTypes = {
 
 export {
   Component as Price,
-  // Container as Price,
   Component as PriceComponent,
 };

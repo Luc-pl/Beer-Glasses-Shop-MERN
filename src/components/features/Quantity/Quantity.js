@@ -26,6 +26,5 @@ Component.propTypes = {
 
 export {
   Component as Quantity,
-  // Container as Quantity,
   Component as QuantityComponent,
 };

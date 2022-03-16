@@ -1,3 +1,4 @@
+/* eslint-disable linebreak-style */
 import React from 'react';
 import PropTypes from 'prop-types';
 import { NavButton } from '../../common/NavButton/NavButton';
@@ -70,7 +71,6 @@ const Container = connect(mapStateToProps, mapDispatchToProps)(Component);
 
 
 export {
-  //Component as TopBar,
   Container as TopBar,
   Component as TopBarComponent,
 };

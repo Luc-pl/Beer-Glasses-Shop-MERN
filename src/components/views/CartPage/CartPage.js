@@ -57,7 +57,6 @@ const mapStateToProps = state => ({
 const ReduxContainer = connect(mapStateToProps)(Component);
 
 export {
-  //Component as CartPage,
   ReduxContainer as CartPage,
   Component as CartPageComponent,
 };

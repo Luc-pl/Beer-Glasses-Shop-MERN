@@ -180,7 +180,6 @@ const mapDispatchToProps = dispatch => ({
 const ReduxContainer = connect(mapStateToProps, mapDispatchToProps)(Component);
 
 export {
-  //Component as SummaryForm,
   ReduxContainer as SummaryForm,
   Component as SummaryFormComponent,
 };

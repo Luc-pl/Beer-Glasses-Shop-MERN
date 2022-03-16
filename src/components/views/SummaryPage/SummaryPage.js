@@ -4,7 +4,6 @@
 
 import React from 'react';
 import PropTypes from 'prop-types';
-//import clsx from 'clsx';
 import { Summary } from '../../features/Summary/Summary';
 import { SummaryForm } from '../../features/SummaryForm/SummaryForm';
 import { fetchProductsFromCart } from '../../../redux/orderRedux';
@@ -69,7 +68,6 @@ const mapDispatchToProps = dispatch => ({
 const ReduxContainer = connect(mapStateToProps, mapDispatchToProps)(Component);
 
 export {
-  //Component as SummaryPage,
   ReduxContainer as SummaryPage,
   Component as SummaryPageComponent,
 };

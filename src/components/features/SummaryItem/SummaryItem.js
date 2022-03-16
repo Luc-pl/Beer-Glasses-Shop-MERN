@@ -30,18 +30,7 @@ Component.propTypes = {
   summaryItem: PropTypes.object,
 };
 
-// const mapStateToProps = state => ({
-//   concerts: reduxSelector(state),
-// });
-
-// const mapDispatchToProps = dispatch => ({
-//   someAction: arg => dispatch(reduxActionCreator(arg)),
-// });
-
-// const Container = connect(mapStateToProps, mapDispatchToProps)(Component);
-
 export {
   Component as SummaryItem,
-  // Container as SummaryItem,
-  Component as SummaryItemComponent, //for tests
+  Component as SummaryItemComponent,
 };

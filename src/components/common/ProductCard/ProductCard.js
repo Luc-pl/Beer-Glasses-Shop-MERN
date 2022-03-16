@@ -35,6 +35,5 @@ Component.propTypes = {
 
 export {
   Component as ProductCard,
-  // Container as ProductCard,
   Component as ProductCardComponent,
 };

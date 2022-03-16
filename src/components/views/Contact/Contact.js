@@ -5,7 +5,6 @@
 import React from 'react';
 import PropTypes from 'prop-types';
 import Container from 'react-bootstrap/Container';
-//import styles from './Contact.module.scss';
 
 class Contact extends React.Component {
   
