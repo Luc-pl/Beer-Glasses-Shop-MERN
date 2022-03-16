@@ -1,6 +1,7 @@
 /* eslint-disable linebreak-style */
 import Axios from 'axios';
 import { api } from '../settings.js';
+import { initialState } from './initialState.js';
 
 /* selectors */
 export const getAllProducts = ({products}) => products.data;
@@ -56,7 +57,7 @@ export const fetchProductDetails = (_id) => {
 };
 
 /* reducer */
-export const reducer = (statePart = [], action = {}) => {
+export default function reducer(statePart = initialState.products, action = {}) {
   switch (action.type) {
     case FETCH_START: {
       return {
@@ -99,4 +100,4 @@ export const reducer = (statePart = [], action = {}) => {
     default:
       return statePart;
   }
-};
+}

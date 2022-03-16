@@ -7,6 +7,7 @@ export const initialState = {
     { id: 'belgian', name: 'Belgian' },
     { id: 'tasting', name: 'Tasting' },
   ],
+  cart: [],
   order: {
     lastOrder: '',
     status: '',

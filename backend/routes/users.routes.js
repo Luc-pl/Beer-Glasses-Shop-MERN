@@ -15,6 +15,7 @@ router.get('/users/:id', async (req, res) => {
     res.status(500).json(err);
   }
 });
+
 router.put('/users/:id', async (req, res) => {
   try {
     const user = await User.findOne({ email: req.params.id });

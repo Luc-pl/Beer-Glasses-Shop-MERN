@@ -6,13 +6,15 @@ import loginReducer from './loginRedux';
 import cartReducer from './cartRedux';
 import orderReducer from './orderRedux';
 import { initialState } from './initialState';
-import { reducer as productsReducer } from './productsRedux';
+import productsReducer from './productsRedux';
+import userReducer from './userRedux';
 
 // define reducers
 const reducers = {
   products: productsReducer,
   isLogged: loginReducer,
   cart: cartReducer,
+  user: userReducer,
   order: orderReducer,
 };
 
@@ -28,7 +30,6 @@ const combinedReducers = combineReducers(reducers);
 // create store
 export const store = createStore(
   combinedReducers,
-  initialState,
   composeWithDevTools(
     applyMiddleware(thunk)
   )

@@ -2,6 +2,7 @@
 import Axios from 'axios';
 import { api } from '../settings';
 import { fetchProductsFromCart } from './orderRedux';
+import { initialState } from './initialState';
 
 /* selectors */
 export const getCart = (state) => state.cart;
@@ -133,7 +134,7 @@ export const updateCartItemInfo = (obj) => {
 
 
 /* reducer */
-export default function reducer(statePart = [], action = {}) {
+export default function reducer(statePart = initialState.cart, action = {}) {
   switch (action.type) {
     case UPDATE_CART: {
       return action.payload;

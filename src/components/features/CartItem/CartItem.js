@@ -3,6 +3,7 @@ import React from 'react';
 import PropTypes from 'prop-types';
 import clsx from 'clsx';
 import { Quantity } from '../../features/Quantity/Quantity';
+import { Price } from '../../common/Price/Price';
 import styles from './CartItem.module.scss';
 import { connect } from 'react-redux';
 import Row from 'react-bootstrap/Row';
@@ -26,11 +27,11 @@ class Component extends React.Component {
   render() {
     const { handleChange, handleRemove } = this;
     const { className, cartItem } = this.props;
-    const { quantity, productId, name, image } = cartItem;
+    const { name, image, quantity, productId, price, additionalInfo } = cartItem;
 
     return (
       <Row>
-        <form key={productId} className={clsx(className, styles.root)}>
+        <form className={clsx(className, styles.root)}>
           <Col xs={2}>{image}</Col>
           <Col xs={4}>{name}</Col>
           <Col xs={4}><Quantity value={Number(quantity)} action={(e) => handleChange(e, productId)} className={styles.inputQuantityPosition} id={productId}  />
@@ -42,10 +43,12 @@ class Component extends React.Component {
                 name="additionalInfo" 
                 id={`additionalInfo${productId}`}
                 onChange={(e) => handleChange(e, productId)}
-                placeholder="">
+                placeholder=""
+                value={additionalInfo}>
               </textarea>
             </Col>            
           </Row>
+          <Price price={price * quantity} text={''} />
         </form>
       </Row>
 
