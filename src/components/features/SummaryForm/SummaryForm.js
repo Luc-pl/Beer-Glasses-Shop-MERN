@@ -6,7 +6,7 @@ import { connect } from 'react-redux';
 import { InfoOrder } from '../../common/InfoOrder/InfoOrder';
 import { postOrder, clearSuccess } from '../../../redux/orderRedux';
 import Form from 'react-bootstrap/Form';
-import Button from 'react-bootstrap/Button';
+import styles from './SummaryForm.module.scss';
 
 class Component extends React.Component {
   
@@ -142,8 +142,7 @@ class Component extends React.Component {
                   I Agree To Terms.
                 </Form.Text>
               </Form.Group>
-                
-              <Button variant="primary" type="submit" submitForm={true} text={'Order & Pay'} path={'summary'}>Order & pay</Button>
+              <button className={styles.orderBtn} type="submit" submitForm={true} path={'summary'}>Order & Pay</button>
             </div>
           )}
       </Form>

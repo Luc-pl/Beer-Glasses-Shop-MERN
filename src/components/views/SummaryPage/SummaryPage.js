@@ -8,10 +8,9 @@ import { Summary } from '../../features/Summary/Summary';
 import { SummaryForm } from '../../features/SummaryForm/SummaryForm';
 import { fetchProductsFromCart } from '../../../redux/orderRedux';
 import { connect } from 'react-redux';
+import clsx from 'clsx';
 import styles from './SummaryPage.module.scss';
-import Row from 'react-bootstrap/Row';
-import Container from 'react-bootstrap/Container';
-
+import { Container, Card } from 'react-bootstrap';
 
 class Component extends React.Component { 
 
@@ -22,7 +21,7 @@ class Component extends React.Component {
   }
 
   render() {
-    const { products } = this.props;
+    const { products, className } = this.props;
 
     let orderValue = 0;
 
@@ -31,17 +30,19 @@ class Component extends React.Component {
     });
 
     return(
-      <Container>
-        <Row className={styles.cardSummary}>
-            <h1>Order Summary</h1>
-            {products.length 
-              ?
-              <Summary products={products} orderValue={orderValue} />
-              :
-              <h1>No order</h1>
-            }
-            <SummaryForm orderValue={orderValue} />
-        </Row>
+      <Container className={clsx(className, styles.root)}>
+        <Card className={styles.cardSummary}>
+            <Card.Body>
+              <h1>Order Summary</h1>
+              {products.length 
+                ?
+                <Summary products={products} orderValue={orderValue} />
+                :
+                <h1>No order</h1>
+              }
+              <SummaryForm orderValue={orderValue} />
+            </Card.Body>
+        </Card>
       </Container>
     );
   }

@@ -1,4 +1,17 @@
 @import '../../../styles/settings.scss';
 
-// .root {
-// }
+.orderBtn {
+    width: 140px;
+    height: 40px;
+    background-color: $color-blue;
+    border: none;
+    border-radius: 20px;
+    cursor: pointer;
+    color: white;
+    font-size: 18px;
+    text-decoration: none;
+
+    :hover {
+        color: orange;
+    }
+}

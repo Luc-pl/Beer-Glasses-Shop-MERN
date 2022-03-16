@@ -2,10 +2,10 @@
 
 import React from 'react';
 import PropTypes from 'prop-types';
+import styles from './Quantity.module.scss';
 
-const Component = ({ className, value, action, text, id }) =>
-  <label htmlFor={`quantity${id}`} className={className}>
-    {text}
+const Component = ({ value, action, id }) =>
+  <label htmlFor={`quantity${id}`}>
     <input
       name='quantity'
       id={`quantity${id}`}
@@ -13,13 +13,12 @@ const Component = ({ className, value, action, text, id }) =>
       type='number'
       value={value}
       onChange={action}
+      className={styles.inputPrice}
     />
   </label>;
 
 Component.propTypes = {
-  className: PropTypes.string,
   value: PropTypes.number,
-  text: PropTypes.string,
   action: PropTypes.func,
   id: PropTypes.string,
 };

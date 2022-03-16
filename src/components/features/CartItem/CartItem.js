@@ -4,10 +4,10 @@ import PropTypes from 'prop-types';
 import clsx from 'clsx';
 import { Quantity } from '../../features/Quantity/Quantity';
 import { Price } from '../../common/Price/Price';
+import { RemoveButton } from '../../common/RemoveButton/RemoveButton';
 import styles from './CartItem.module.scss';
 import { connect } from 'react-redux';
-import Row from 'react-bootstrap/Row';
-import Col from 'react-bootstrap/Col';
+import { Row, Col } from 'react-bootstrap';
 import { removeFromCart, updateCartItemQuantity, updateCartItemInfo } from '../../../redux/cartRedux';
 
 class Component extends React.Component {
@@ -43,7 +43,7 @@ class Component extends React.Component {
               <Price price={price * quantity} text={''} />
             </Col>
             <Col xs={3}>
-              <button action={() => handleRemove(productId)}>Remove to cart</button> 
+              <RemoveButton action={() => handleRemove(productId)} text='Remove'/>
             </Col>
           </Row>
           <Row className={styles.sendInfo}>

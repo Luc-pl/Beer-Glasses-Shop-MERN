@@ -4,9 +4,8 @@ import PropTypes from 'prop-types';
 import { Link } from 'react-router-dom';
 import { Price } from '../../common/Price/Price';
 import { CartItem } from '../../features/CartItem/CartItem';
-import Card from 'react-bootstrap/Card';
+import { Container, Card, Row, Col } from 'react-bootstrap';
 import clsx from 'clsx';
-import Container from 'react-bootstrap/Container';
 import { connect } from 'react-redux';
 
 import styles from './CartPage.module.scss';
@@ -27,12 +26,28 @@ const Component = ({ className, cart }) => {
       <Card className={styles.cardProduct}>
         <Card.Body>
           <h2>Your Cart</h2>
+          <Row className={styles.rowCartPage}>
+            <Col xs={3}>
+              <p>Products</p>
+            </Col>
+            <Col xs={3}>
+              <p>Quantity</p>
+            </Col>
+            <Col xs={3}>
+              <p>Price</p>
+            </Col>
+            <Col xs={3}>
+              <p>Action</p>
+            </Col>
+          </Row>
           {cart.length 
             ?
             <div>
-              {getMapCart(cart)}
-              <Price price={cartValue} />
-              <button><Link to={`${process.env.PUBLIC_URL}/summary`}>Order & pay</Link></button>
+              {getMapCart(cart)}            
+              <div>
+                <Price price={cartValue} text='Total price:' />
+              </div>
+              <button className={styles.orderBtn}><Link to={`${process.env.PUBLIC_URL}/summary`} className={styles.linkCart}>Order & pay</Link></button>
             </div>
             :
             <h2>...is empty</h2>

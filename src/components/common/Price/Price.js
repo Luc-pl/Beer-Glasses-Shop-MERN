@@ -6,9 +6,9 @@ import clsx from 'clsx';
 
 import styles from './Price.module.scss';
 
-const Component = ({ className, children, price }) => (
+const Component = ({ className, children, price, text }) => (
   <p className={clsx(className, styles.root)}>
-    {`Price: ${price}$`}
+    {`${text} ${price}$`}
   </p>
 );
 
@@ -16,6 +16,7 @@ Component.propTypes = {
   children: PropTypes.node,
   className: PropTypes.string,
   price: PropTypes.number,
+  text: PropTypes.string,
 };
 
 export {
