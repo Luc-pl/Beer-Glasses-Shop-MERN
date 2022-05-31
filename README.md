@@ -2,6 +2,12 @@
 
 Full stack e-commerce app created with React, Redux and Bootstrap library. Backend in Express.js and MongoDB with Mongoose. 
 
+
+
+https://user-images.githubusercontent.com/83474515/171278025-6ba713b9-b396-40e7-a96e-3227e71018ff.mp4
+
+
+
 ## Run project locally
 
 1. yarn install
